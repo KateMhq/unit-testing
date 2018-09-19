@@ -121,6 +121,48 @@ function camelise(string){
   let firstLetter=newArray.join("")[0].toLowerCase();
   return newString=firstLetter+newArray.join("").substring(1);
 }
+
+function isPrime(number){
+  for (i=2;i<number-1;i++){
+    if (number%i === 0){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+}
+
+function Walker(x,y){
+    this.journey= [[0,0]];
+    this.trackJourney=function(){
+      this.journey.push([x,y])
+  }
+}
+
+
+Walker.prototype.walk = function(direction,steps){
+  if (direction === "N"){
+    return this.journey[1][1]+=steps;
+  } else if (direction === "S") {
+    return this.journey[1][1]-=steps;
+  } else if (direction === "E") {
+    return this.journey[1][0]+=steps;
+
+  } else if(direction ==="W"){
+    return this.journey[1][0]-=steps;
+  }
+}
+
+Walker.prototype.currentLocation=function(){
+  return this.currentLocation = this.journey[1];
+};
+
+Walker.prototype.totalStep=function(){
+  return this.totalStep = this.journey[1][0]+this.journey[1][1]
+}
+
+
 module.exports = {
   add,
   arrayOfString,
@@ -130,5 +172,7 @@ module.exports = {
   developerLearned,
   stringsConcat,
   negativeOnly,
-  camelise
+  camelise,
+  isPrime,
+  Walker
 }
